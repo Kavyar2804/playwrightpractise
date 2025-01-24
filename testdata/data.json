@@ -1,0 +1,13 @@
+{
+    "customer.firstName": "abc",
+    "customer.lastName": "xyz",
+    "customer.address.street":"Rajajinagar",
+    "customer.address.city":"Bangalore",
+    "customer.address.state":"Karnataka",
+    "customer.address.zipCode":"560040",
+    "customer.phoneNumber":"9148520950",
+    "customer.ssn":"idk",
+    "customer.username":"ammu",
+    "customer.password":"ammu143",
+    "repeatedPassword":"ammu143"
+}
