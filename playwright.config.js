@@ -36,8 +36,7 @@ module.exports = defineConfig({
     video: 'on-first-retry',
   },
 
-  reporter: [['allure-playwright'],
-//  ['html']
+  reporter: [['allure-playwright'], ['html']
 ],
 
   /* Configure projects for major browsers */
@@ -68,10 +67,10 @@ module.exports = defineConfig({
     // },
 
     /* Test against branded browsers. */
-    {
-      name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    },
+    // {
+    //   name: 'Microsoft Edge',
+    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    // },
     {
       name: 'Google Chrome',
       use: { ...devices['Desktop Chrome'], channel: 'chrome' },
