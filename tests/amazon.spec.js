@@ -4,19 +4,19 @@ import Amazonbooking from '../pageobjects/prac';
 import Addtocart from '../pageobjects/newwindow';
 
 
-test('searchproduct_and_addtocart', async({browser})=>{
+test('searchproduct_and_addtocart', async ({ browser }) => {
    test.slow()
    const context = await browser.newContext()
-   const page= await context.newPage()
+   const page = await context.newPage()
    let amzn = new Amazonbooking(page);
-   
+
    await amzn.gotourl('https://www.amazon.in/')
    await expect(page).toHaveTitle('Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in')
    await amzn.searchtxtfld('baby mosquito net')
 
-  const [newpage] = await Promise.all([
-   context.waitForEvent('page'),
-   amzn.slctprod()
+   const [newpage] = await Promise.all([
+      context.waitForEvent('page'),
+      amzn.slctprod()
    ])
    //await expect(amzn.prodval).toContainText('Baby Mosquito Net')
    console.log(newpage)
@@ -31,10 +31,12 @@ test('searchproduct_and_addtocart', async({browser})=>{
    await acart.pchckout()
 
 
- 
-
+   // let pl = context.pages()
+   // pl[0].bringToFront()
+   // pl[0].context().pages.bringToFront()
    //await amzn.selectqty.scrollIntoViewIfNeeded()
    //await expect(amzn.selectqty).toBeEnabled()
    // await page.pause()
 
 })
+

@@ -2,7 +2,9 @@ import { test, expect } from '@playwright/test';
 
 test('flight booking from Bangalore to Delhi on MakeMyTrip', async ({ page }) => {
     // Go to MakeMyTrip website
+    await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto('https://www.makemytrip.com/');
+    await page.setViewportSize({ width: 1920, height: 1080 });
 
     // Close the login popup if it appears
     try {

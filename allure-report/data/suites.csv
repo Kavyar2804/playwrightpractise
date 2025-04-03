@@ -1,2 +1,6 @@
 "DESCRIPTION","DURATION IN MS","NAME","PARENT SUITE","START TIME","STATUS","STOP TIME","SUB SUITE","SUITE","TEST CLASS","TEST METHOD"
-"","6174","searchproduct_and_addtocart","Google Chrome","Fri Jan 24 12:54:53 IST 2025","failed","Fri Jan 24 12:54:59 IST 2025","","amazon.spec.js","",""
+"","30361","flight booking from Bangalore to Delhi on MakeMyTrip","Google Chrome","Fri Jan 31 15:50:46 IST 2025","broken","Fri Jan 31 15:51:17 IST 2025","","samp.spec.js","",""
+"","19576","keyboard event","Google Chrome","Fri Jan 24 15:50:15 IST 2025","passed","Fri Jan 24 15:50:34 IST 2025","","keyboardevent.spec.js","",""
+"","13487","keyboard event","Microsoft Edge","Fri Jan 24 15:50:15 IST 2025","passed","Fri Jan 24 15:50:28 IST 2025","","keyboardevent.spec.js","",""
+"","5632","registerforbanking","Google Chrome","Fri Jan 31 14:49:37 IST 2025","passed","Fri Jan 31 14:49:43 IST 2025","","fetchdatafromjson.spec.js","",""
+"","21052","searchproduct_and_addtocart","Google Chrome","Fri Jan 31 11:00:57 IST 2025","failed","Fri Jan 31 11:01:18 IST 2025","","amazon.spec.js","",""
