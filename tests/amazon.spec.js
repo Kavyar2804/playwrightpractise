@@ -5,7 +5,6 @@ import Addtocart from '../pageobjects/newwindow';
 
 
 test('searchproduct_and_addtocart', async ({ browser }) => {
-   test.slow()
    const context = await browser.newContext()
    const page = await context.newPage()
    let amzn = new Amazonbooking(page);

@@ -1,0 +1,12 @@
+[
+    {
+      "username": "student",
+      "password": "SuperSecretPassword!",
+      "url": "https://practicetestautomation.com/practice-test-login/"
+    },
+    {
+      "username": "tomsmith12345",
+      "password": "SuperSecretPassword!123456",
+      "url": "https://practicetestautomation.com/practice-test-login/"
+    }
+  ]
