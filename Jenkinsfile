@@ -11,7 +11,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'npx playwright test'
+                bat 'npx playwright test'
             }
         }
 
