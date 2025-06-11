@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('Install') {
             steps {
-                sh 'npm ci'
+                bat 'npm install'  // Install dependencies using npm
+                bat 'npx playwright install'  // Install Playwright browsers
             }
         }
 
