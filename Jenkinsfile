@@ -26,25 +26,28 @@ pipeline {
         }
 
         stage('Publish HTML Report') {
-            steps {
-                publishHTML(target: [
-                    reportDir: 'playwright-report',
-                    reportFiles: 'index.html',
-                    reportName: 'Playwright HTML Report',
-                    alwaysLinkToLastBuild: true,
-                    keepAll: true
-                ])
-            }
-        }
-
-        stage('Publish Allure Report') {
-            steps {
-                allure([
-                    includeProperties: false,
-                    jdk: '',
-                    results: [[path: 'allure-results']]
-                ])
-            }
-        }
+        when { always() }
+        steps {
+        publishHTML(target: [
+            reportDir: 'playwright-report',
+            reportFiles: 'index.html',
+            reportName: 'Playwright HTML Report',
+            alwaysLinkToLastBuild: true,
+            keepAll: true
+        ])
     }
+}
+
+        stage('Publish Allure Report')  {
+        when { always() }
+        steps {
+        allure([
+            includeProperties: false,
+            jdk: '',
+            results: [[path: 'allure-results']]
+        ])
+    }
+}
+
+}
 }
