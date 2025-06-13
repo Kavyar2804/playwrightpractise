@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    // tools {
-    //     nodejs 'NodeJS' // Optional if Jenkins has NodeJS tool configured
-    // }
-
     stages {
         stage('Install Dependencies') {
             steps {
@@ -15,39 +11,35 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                bat 'npx playwright test --reporter=html,allure-playwright'
+                script {
+                    def status = bat(script: 'npx playwright test --reporter=html,allure-playwright', returnStatus: true)
+                    if (status != 0) {
+                        echo "Tests failed, but continuing to generate reports..."
+                    }
+                }
             }
         }
+    }
 
-        stage('Generate Allure Report') {
-            steps {
-                bat 'npx allure generate allure-results --clean -o allure-report'
-            }
+    post {
+        always {
+            echo 'Generating Allure and HTML reports...'
+
+            bat 'npx allure generate allure-results --clean -o allure-report'
+
+            publishHTML(target: [
+                reportDir: 'playwright-report',
+                reportFiles: 'index.html',
+                reportName: 'Playwright HTML Report',
+                alwaysLinkToLastBuild: true,
+                keepAll: true
+            ])
+
+            allure([
+                includeProperties: false,
+                jdk: '',
+                results: [[path: 'allure-results']]
+            ])
         }
-
-        stage('Publish HTML Report') {
-        when { always() }
-        steps {
-        publishHTML(target: [
-            reportDir: 'playwright-report',
-            reportFiles: 'index.html',
-            reportName: 'Playwright HTML Report',
-            alwaysLinkToLastBuild: true,
-            keepAll: true
-        ])
     }
-}
-
-        stage('Publish Allure Report')  {
-        when { always() }
-        steps {
-        allure([
-            includeProperties: false,
-            jdk: '',
-            results: [[path: 'allure-results']]
-        ])
-    }
-}
-
-}
 }
