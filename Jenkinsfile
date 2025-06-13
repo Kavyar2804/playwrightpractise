@@ -1,9 +1,9 @@
 pipeline {
     agent any
 
-    tools {
-        nodejs 'NodeJS' // Optional if Jenkins has NodeJS tool configured
-    }
+    // tools {
+    //     nodejs 'NodeJS' // Optional if Jenkins has NodeJS tool configured
+    // }
 
     stages {
         stage('Install Dependencies') {
