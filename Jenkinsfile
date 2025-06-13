@@ -11,14 +11,28 @@ pipeline {
 
         stage('Test') {
             steps {
-                bat 'npx playwright test'
+                bat 'npx playwright test --reporter=html,allure-playwright'  // Run Playwright tests with HTML and Allure reporters
+                bat 'npx allure generate allure-results --clean -o allure-report'  // Generate Allure report
             }
         }
 
         stage('Report') {
             steps {
-                archiveArtifacts artifacts: 'playwright-report/**/*', fingerprint: true
+                    publishHTML(target: [
+                    reportDir: 'playwright-report',
+                    reportFiles: 'index.html',
+                    reportName: 'Playwright HTML Report',
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true
+                ]
             }
         }
+        stage('Publish Allure Report') {
+            steps {
+                allure([
+                    includeProperties: false,
+                    jdk: '',
+                    results: [[path: 'allure-results']]
+                ])
     }
 }
