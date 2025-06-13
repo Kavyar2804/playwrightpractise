@@ -1,32 +1,42 @@
 pipeline {
-    agent any  // Run on any available Jenkins agent
+    agent any
+
+    tools {
+        nodejs 'NodeJS' // Optional if Jenkins has NodeJS tool configured
+    }
 
     stages {
-        stage('Install') {
+        stage('Install Dependencies') {
             steps {
-                bat 'npm install'  // Install dependencies using npm
-                bat 'npx playwright install'  // Install Playwright browsers
+                bat 'npm install'
+                bat 'npx playwright install'
             }
         }
 
-        stage('Test') {
+        stage('Run Tests') {
             steps {
-                bat 'npx playwright test --reporter=html,allure-playwright'  // Run Playwright tests with HTML and Allure reporters
-                bat 'npx allure generate allure-results --clean -o allure-report'  // Generate Allure report
+                bat 'npx playwright test --reporter=html,allure-playwright'
             }
         }
 
-        stage('Report') {
+        stage('Generate Allure Report') {
             steps {
-                    publishHTML(target: [
+                bat 'npx allure generate allure-results --clean -o allure-report'
+            }
+        }
+
+        stage('Publish HTML Report') {
+            steps {
+                publishHTML(target: [
                     reportDir: 'playwright-report',
                     reportFiles: 'index.html',
                     reportName: 'Playwright HTML Report',
                     alwaysLinkToLastBuild: true,
                     keepAll: true
-                ]
+                ])
             }
         }
+
         stage('Publish Allure Report') {
             steps {
                 allure([
@@ -34,5 +44,7 @@ pipeline {
                     jdk: '',
                     results: [[path: 'allure-results']]
                 ])
+            }
+        }
     }
 }
