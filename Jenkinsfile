@@ -32,7 +32,10 @@ pipeline {
                 reportFiles: 'index.html',
                 reportName: 'Playwright HTML Report',
                 alwaysLinkToLastBuild: true,
-                keepAll: true
+                keepAll: true,
+                 alwaysLinkToLastBuild: true,
+                allowMissing: true,
+                linkRelative: false
             ])
 
             allure([
